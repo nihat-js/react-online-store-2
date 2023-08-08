@@ -3,11 +3,11 @@ import "./index.scss"
 import { Link } from 'react-router-dom'
 export function Nav() {
   return (
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="index.html" class="navbar-logo">Unavila</a>
+    <nav className="navbar">
+      <div className="navbar-brand">
+      <Link  className='navbar-logo' to="/"> Unovilo </Link>
       </div>
-      <ul class="navbar-links">
+      <ul className="navbar-links">
         <li>  <Link to="/"> Home </Link></li>
         <li>   <Link to="/cart"> Cart </Link> </li>
         <li>   <Link to="/favorite"> Fav </Link>  </li>

@@ -2,17 +2,23 @@ import React from 'react'
 import "./index.scss"
 import star from '../../assets/star.svg'
 import starFilled from "../../assets/star-filled.svg"
+import addToCart from "../../assets/add-to-cart.svg"
+import removeFromCart from "../../assets/remove-from-cart.svg"
 import MyStorage from '../../classes/MyStorage'
-import PropTypes from 'prop-types'; 
-export  function Product({ favorites, setFavorites,  cart , setCart,  data: { id, name, price, imagePath, sku, color } }) {
-
+import PropTypes from 'prop-types';
+export function Product({ favorites, setFavorites, cart, setCart, data: { id, name, price, imagePath, sku, color } }) {
+  
   let isFav = favorites.indexOf(id) > -1
-  let isInCart = favorites.indexOf(id) > -1
+  let isInCart = cart.indexOf(id) > -1
   function handleStarClick() {
+
     let arr = isFav ? MyStorage.remove("favorites", (el) => el !== id) : MyStorage.add("favorites", id)
-    let arr_ = isInCart ? MyStorage.remove("favorites", (el) => el !== id) : MyStorage.add("favorites", id)
     setFavorites(arr)
-    setCart(arr_)
+  }
+  
+  function handleCartClick(){
+    let arr = isInCart ? MyStorage.remove("cart", (el) => el !== id) : MyStorage.add("cart", id)
+    setCart(arr)
   }
 
   return (
@@ -20,7 +26,7 @@ export  function Product({ favorites, setFavorites,  cart , setCart,  data: { id
       <header>
         <img className='product-img' src={imagePath} alt="Product image" />
         <img className='star' src={isFav ? starFilled : star} alt="" onClick={handleStarClick} />
-        <img className='cart' src={i} alt="" />
+        <img className='cart' src={isInCart ? removeFromCart : addToCart }  onClick={handleCartClick} alt="" />
       </header>
       <div className="body">
         <h2> Name {name}</h2>
@@ -35,7 +41,7 @@ export  function Product({ favorites, setFavorites,  cart , setCart,  data: { id
 
 
 Product.propTypes = {
-  favorites : PropTypes.array.isRequired,
-  setFavorites : PropTypes.func.isRequired,
-  data : PropTypes.object.isRequired,
+  favorites: PropTypes.array.isRequired,
+  setFavorites: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 }

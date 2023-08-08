@@ -1,15 +1,13 @@
 import React from 'react'
 import { Products } from '../../components/products/index';
-import { Nav } from '../../components/nav';
 
-export function Cart({ products, favorites,setFavorites }) {
+export function Cart({ products, favorites,setFavorites,cart,setCart }) {
 
-  const cartProducts = products.filter(p => favorites.indexOf(p.id) > -1  )
+  const cartProducts = products.filter(p => cart.indexOf(p.id) > -1  )
   return (
-    <div>
-      <Nav/>
-      This is favorite page
-      <Products products={cartProducts} favorites={favorites} setFavorites={setFavorites} />
+    <div className='cart-page'>
+      <p> Check your products in cart </p>
+      <Products products={cartProducts} favorites={favorites} setFavorites={setFavorites} cart={cart} setCart={setCart} />
     </div>
   )
 }

@@ -4,13 +4,19 @@
   header{
     position: relative;
   }
-  .star{
+  img.star , img.cart{
     position: absolute;
     top : 10px ;
     right:  10px;
     width: 24px;
     height: 24px;
   }
+
+  img.cart {
+    top : 10px;
+    right: 40px;
+  }
+
   .body {
     padding: 10px 15px;
   }
@@ -25,4 +31,5 @@
   p {
     font-size: 14px;
   }
+
 }
