@@ -7,16 +7,23 @@ import removeFromCart from "../../assets/remove-from-cart.svg"
 import MyStorage from '../../classes/MyStorage'
 import PropTypes from 'prop-types';
 export function Product({ favorites, setFavorites, cart, setCart, data: { id, name, price, imagePath, sku, color } }) {
-  
+
   let isFav = favorites.indexOf(id) > -1
   let isInCart = cart.indexOf(id) > -1
   function handleStarClick() {
-
+    if (isFav) {
+      let res = confirm("Are you sure you want to  remove from the favorites?")
+      if (!res) return false
+    }
     let arr = isFav ? MyStorage.remove("favorites", (el) => el !== id) : MyStorage.add("favorites", id)
     setFavorites(arr)
   }
-  
-  function handleCartClick(){
+
+  function handleCartClick() {
+    if (isInCart) {
+      let res = confirm("Are you sure you want to  remove from the cart?")
+      if (!res) return false
+    }
     let arr = isInCart ? MyStorage.remove("cart", (el) => el !== id) : MyStorage.add("cart", id)
     setCart(arr)
   }
@@ -26,7 +33,7 @@ export function Product({ favorites, setFavorites, cart, setCart, data: { id, na
       <header>
         <img className='product-img' src={imagePath} alt="Product image" />
         <img className='star' src={isFav ? starFilled : star} alt="" onClick={handleStarClick} />
-        <img className='cart' src={isInCart ? removeFromCart : addToCart }  onClick={handleCartClick} alt="" />
+        <img className='cart' src={isInCart ? removeFromCart : addToCart} onClick={handleCartClick} alt="" />
       </header>
       <div className="body">
         <h2> Name {name}</h2>

@@ -21,8 +21,8 @@ export function Home({products,setProducts,favorites,setFavorites,cart,setCart})
 
   return (
     <div className='home-page'>
-      <button onClick={() => setShowAddModal(true)} >  Add Product </button>
-      {/* <CreateProduct products={products} setProducts={setProducts} showModal={showAddModal} setShowModal={setShowAddModal} /> */}
+      <button  className='add-product' onClick={() => setShowAddModal(true)} >  Add Product </button>
+      <CreateProduct products={products} setProducts={setProducts} showModal={showAddModal} setShowModal={setShowAddModal} />
       <Products products={products} favorites={favorites} setFavorites={setFavorites} cart={cart} setCart={setCart} />
 
 
