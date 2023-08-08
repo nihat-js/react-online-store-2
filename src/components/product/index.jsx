@@ -4,12 +4,15 @@ import star from '../../assets/star.svg'
 import starFilled from "../../assets/star-filled.svg"
 import MyStorage from '../../classes/MyStorage'
 import PropTypes from 'prop-types'; 
-export  function Product({ favorites, setFavorites, data: { id, name, price, imagePath, sku, color } }) {
+export  function Product({ favorites, setFavorites,  cart , setCart,  data: { id, name, price, imagePath, sku, color } }) {
 
   let isFav = favorites.indexOf(id) > -1
+  let isInCart = favorites.indexOf(id) > -1
   function handleStarClick() {
     let arr = isFav ? MyStorage.remove("favorites", (el) => el !== id) : MyStorage.add("favorites", id)
+    let arr_ = isInCart ? MyStorage.remove("favorites", (el) => el !== id) : MyStorage.add("favorites", id)
     setFavorites(arr)
+    setCart(arr_)
   }
 
   return (
@@ -17,6 +20,7 @@ export  function Product({ favorites, setFavorites, data: { id, name, price, ima
       <header>
         <img className='product-img' src={imagePath} alt="Product image" />
         <img className='star' src={isFav ? starFilled : star} alt="" onClick={handleStarClick} />
+        <img className='cart' src={i} alt="" />
       </header>
       <div className="body">
         <h2> Name {name}</h2>

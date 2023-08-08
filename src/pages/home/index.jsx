@@ -17,13 +17,6 @@ export function Home({products,setProducts,favorites,setFavorites,cart,setCart})
 
 
 
-  useEffect(() => {
-
-    setFavorites(MyStorage.load("favorites"))
-    fetchProducts().then(products => {
-      setProducts([...MyStorage.load("products"), ...products])
-    })
-  }, [])
 
 
   return (

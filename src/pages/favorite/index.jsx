@@ -2,15 +2,15 @@ import React from 'react'
 import { Products } from '../../components/products/index';
 import { Nav } from '../../components/nav';
 
-export function Favorite({ products, favorites }) {
+export function Favorite({ products, favorites,setFavorites }) {
 
-  const favProducts = products.map(p => favorites.indexOf(p.id) > -1 ? p : undefined)
-
+  const favProducts = products.filter(p => favorites.indexOf(p.id) > -1  )
+  console.log({favProducts})
   return (
     <div>
       <Nav/>
       This is favorite page
-      <Products products={products} favorites={favorites} setFavorites={setFavorites} />
+      <Products products={favProducts} favorites={favorites} setFavorites={setFavorites} />
     </div>
   )
 }
